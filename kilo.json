@@ -1,0 +1,41 @@
+﻿{
+  "$schema": "https://app.kilo.ai/config.json",
+  "model": "anthropic/claude-sonnet",
+  "default_agent": "qa-geo-specialist",
+  "permission": {
+    "read": "allow",
+    "edit": {
+      "*": "allow", 
+      "*.md": "allow",
+      "*.json": "allow"
+    },
+    "bash": "allow",
+    "webfetch": "allow",
+    "websearch": "allow",
+    "question": "allow",
+    "skill": "allow",
+    "external_directory": "ask"
+  },
+  "mcp": {
+    "seo-validator": {
+      "type": "local",
+      "command": ["npx", "-y", "@anthropic-ai/seo-validator-mcp"],
+      "enabled": false,
+      "timeout": 30000
+    },
+    "web-scraper": {
+      "type": "local",
+      "command": ["npx", "-y", "@anthropic-ai/playwright-mcp"],
+      "enabled": false,
+      "timeout": 60000
+    }
+  },
+  "skills": {
+    "paths": [
+      "./.kilo/skills"
+    ]
+  },
+  "instructions": [
+    "./.kilo/skills/**/SKILL.md"
+  ]
+}

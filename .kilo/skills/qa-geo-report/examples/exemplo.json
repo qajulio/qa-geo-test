@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "url": "https://www.exemplo.com.br",
+    "data": "2026-09-02T01:30:00Z",
+    "versao_skill": "qa-geo@1.0.0",
+    "fontes_oficiais": [
+      "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+      "https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing"
+    ]
+  },
+  "scores": {
+    "seo": 82,
+    "geo": 75,
+    "generative_search": 80,
+    "ai_retrieval": 88,
+    "anti_hallucination": 95,
+    "accessibility": 70,
+    "mobile_first_geo": 78,
+    "overall": 81
+  },
+  "status": "Bom",
+  "checks": {
+    "anti_patterns": [
+      { "id": "llms_txt", "detected": false, "severity": "info", "note": "OK" },
+      { "id": "content_fragmentation", "detected": false, "severity": "info" },
+      { "id": "ai_rewriting", "detected": false, "severity": "info" },
+      { "id": "noindex_mobile", "detected": false, "severity": "critical" },
+      { "id": "lazy_load_primary", "detected": false, "severity": "critical" },
+      { "id": "structured_data_parity", "detected": true, "severity": "high",
+        "note": "Faltam schemas Breadcrumb, Product, VideoObject em /produtos" }
+    ],
+    "mobile_first": {
+      "viewport_ok": true,
+      "content_parity_ok": true,
+      "metadata_parity_ok": true,
+      "structured_data_parity_ok": false,
+      "images_ok": true,
+      "videos_ok": true,
+      "no_anti_patterns_ok": true
+    },
+    "seo_tecnico": {
+      "title": { "ok": true, "value": "Loja Exemplo - Produtos de Qualidade" },
+      "meta_description": { "ok": true, "value": "Loja com ampla variedade de produtos" },
+      "viewport": { "ok": true, "value": "width=device-width, initial-scale=1" },
+      "robots": { "ok": true, "value": "index, follow" },
+      "canonical": { "ok": true, "value": "https://www.exemplo.com/" },
+      "h1_unique": { "ok": true, "value": "Loja Exemplo" },
+      "sitemap_xml": { "ok": true },
+      "robots_txt": { "ok": true }
+    },
+    "structured_data": [
+      { "type": "Organization", "present": true },
+      { "type": "Breadcrumb", "present": false },
+      { "type": "Product", "present": false },
+      { "type": "VideoObject", "present": false }
+    ],
+    "accessibility": {
+      "semantic_html": 10,
+      "landmarks": 6,
+      "headings": 12,
+      "alt_text": 9,
+      "labels": 8,
+      "buttons": 6,
+      "links": 7,
+      "tables": 4,
+      "aria": 8,
+      "non_visual": 4,
+      "mobile_first_a11y": 7,
+      "agentic_ux": 6
+    }
+  },
+  "findings": [
+    {
+      "id": "F001",
+      "category": "mobile_first",
+      "severity": "high",
+      "title": "Structured data ausente na versao mobile",
+      "description": "O JSON-LD de Breadcrumb nao esta presente em /produtos/x quando acessado via smartphone Googlebot.",
+      "recommendation": "Adicionar o mesmo JSON-LD no HTML mobile e desktop, garantindo que as URLs no schema correspondam a versao servida.",
+      "reference": "https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing"
+    }
+  ],
+  "ai_retrieval_tests": {
+    "factual": [
+      { "pergunta": "Qual o preco do produto X?", "site": "R$ 99,90", "ia": "R$ 99,90", "match": true },
+      { "pergunta": "Quais formas de pagamento aceitas?", "site": "Cartao, Pix, Boleto", "ia": "Pix e Boleto", "match": false }
+    ],
+    "comparative": [],
+    "intencao": [],
+    "fan_out": [],
+    "unique_pov": [],
+    "multi_modal": []
+  },
+  "anti_hallucination_tests": {
+    "total_perguntas": 10,
+    "alucinacoes_detectadas": 0,
+    "resultados": []
+  },
+  "recomendacoes_top5": [
+    {
+      "titulo": "Adicionar structured data Breadcrumb em mobile",
+      "impacto": "Alto",
+      "esforco": "Baixo",
+      "referencia": "https://developers.google.com/search/docs/appearance/structured-data/breadcrumb"
+    }
+  ],
+  "plano_acao": [
+    { "ordem": 1, "acao": "Implementar paridade de JSON-LD mobile/desktop", "prazo": "1 semana" }
+  ]
+}
